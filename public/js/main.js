@@ -41,6 +41,7 @@ function nextQuestion(currentGame, currentDeck) {
   answerInput.className = 'input__text';
   submitButton.className = 'input__button';
   nextButton.className = 'next__button hidden';
+  trueAnswer.innerText = '';
 
   let nextCard =
     currentDeck.cards[Math.floor(Math.random() * currentDeck.cards.length)];
