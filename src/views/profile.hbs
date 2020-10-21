@@ -1,0 +1,47 @@
+<div class="user__page">
+  <h1>{{userInfo.name}}'s profile</h1>
+
+  <p>Here is the list of flashcards. You can choose one of them and play it.</p>
+  <div style="display: flex; flex-wrap: wrap;" id="list-of-flashcards">
+
+    {{#each allDecks}}
+    <div class="deck__div">
+      <a class="deck" href="/new/?userId={{../idOfUser}}&deckId={{this._id}}">
+        <div>
+          {{this.name}}
+        </div>
+      </a>
+    </div>
+    {{/each}}
+
+  </div>
+
+
+  <h2 class="title__games">Old Games</h2>
+  {{#if oldGames}}
+  <div class="old___games">
+    {{#each oldGames}}
+
+    <div class="old__card__div">
+      {{#if this.isDone}}
+      <a class="old__card done">
+        {{else}}
+        <a class="old__card " href="/play/{{this._id}}">
+          {{/if}}
+          <h2>Deck "{{this.deck.name}}"</h2>
+          <ul>
+            <li>Date: {{this.normData}}</li>
+            <li>Cards in Deck: {{this.deck.cards.length}}</li>
+            <li>First Guess Correct: {{this.counterFirstTrueAnswer}}</li>
+            <li>Total Guesses: {{this.counterAnswer.length}}</li>
+          </ul>
+        </a>
+    </div>
+
+    {{/each}}
+  </div>
+  {{else}}
+  <p>You didn't play any game! Do it right now.</p>
+  {{/if}}
+</div>
+<a class="link__out" href="/">Log out</a>
