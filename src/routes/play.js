@@ -9,7 +9,7 @@ router.get('/:id', async function (req, res) {
   const currentGame = await Game.findById(idGame);
   const currentDeck = await Deck.findById(currentGame.deck).populate('cards');
 
-  res.render('../views/play.hbs');
+  res.render('../views/play.hbs', { play: true });
 });
 
 module.exports = router;

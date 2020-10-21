@@ -45,6 +45,47 @@ li {
   margin-top: 25px;
 }
 
+.input__button:hover {
+  background-color: #fff;
+  color: #007bff;
+}
+
+.next__button {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+
+  border-radius: 0.3rem;
+  padding: 12px 25px;
+
+  cursor: pointer;
+  font-size: 25px;
+  color: #fff;
+  margin-top: 25px;
+}
+
+.next__button:hover {
+  background-color: #fff;
+}
+
+.true {
+  background-color: green;
+  border-color: green;
+}
+
+.true:hover {
+  color: green;
+}
+
+.false {
+  background-color: red;
+  border-color: red;
+}
+
+.false:hover {
+  color: red;
+}
+
 .input__text {
   box-sizing: border-box;
   height: auto;
@@ -52,11 +93,6 @@ li {
   font-size: 16px;
   width: 100%;
   margin-top: 25px;
-}
-
-.input__button:hover {
-  background-color: #fff;
-  color: #007bff;
 }
 
 .link__out {
@@ -167,4 +203,8 @@ li {
 .done:hover {
   background-color: #fff;
   color: #28a745;
+}
+
+.hidden {
+  display: none;
 }

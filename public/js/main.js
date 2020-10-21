@@ -1,10 +1,13 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-restricted-syntax */
-const currentUrl = window.location.href;
-const gameId = currentUrl.slice(27);
+const gameId = window.location.pathname.split('/')[2];
 const answerForm = document.getElementById('answer');
+const answerInput = document.getElementsByClassName('input__text')[0];
+const submitButton = document.getElementsByClassName('input__button')[0];
 const questionString = document.getElementById('question');
 const homeLink = document.getElementById('home');
+const trueAnswer = document.getElementById('true__answer');
+const nextButton = document.getElementsByClassName('next__button')[0];
 
 async function start() {
   const response = await fetch('/game', {
@@ -35,6 +38,10 @@ async function start() {
 }
 
 function nextQuestion(currentGame, currentDeck) {
+  answerInput.className = 'input__text';
+  submitButton.className = 'input__button';
+  nextButton.className = 'next__button hidden';
+
   let nextCard =
     currentDeck.cards[Math.floor(Math.random() * currentDeck.cards.length)];
 
@@ -51,6 +58,9 @@ async function callbackAnswer(event) {
   event.preventDefault();
   const currentAnswer = event.target.currentAnswer.value;
   const currentAnswerId = event.target.name;
+
+  submitButton.className = 'input__button hidden';
+  answerInput.className = 'input__text hidden';
 
   const response = await fetch('/game', {
     method: 'POST',
@@ -71,9 +81,11 @@ async function callbackAnswer(event) {
       currentGame.counterFirstTrueAnswer += 1;
     }
     currentGame.counterAnswer.push(currentAnswerId);
+    nextButton.className = 'next__button true';
     answerForm.reset();
   } else {
     currentGame.counterAnswer.push(currentAnswerId);
+    nextButton.className = 'next__button false';
     answerForm.reset();
   }
 
@@ -90,13 +102,12 @@ async function callbackAnswer(event) {
     return;
   }
 
-  nextQuestion(currentGame, currentDeck);
+  trueAnswer.innerText = 'Правильный ответ: ' + currentTrueAnswer;
+
+  nextButton.addEventListener('click', () => {
+    return nextQuestion(currentGame, currentDeck);
+  });
 }
 
-if (
-  currentUrl.includes('http://localhost:3000/play/') &&
-  currentUrl.length > 30
-) {
-  start();
-  answerForm.addEventListener('submit', callbackAnswer);
-}
+start();
+answerForm.addEventListener('submit', callbackAnswer);
