@@ -11,13 +11,9 @@ const options = {
   bufferMaxEntries: 0,
 };
 
-const {
-  DB_HOST,
-  DB_NAME,
-  DB_PORT,
-} = process.env;
+const { DB_NAME, DB_LOGIN, DB_PASS } = process.env;
 
-const dbConnectionURL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`;
+const dbConnectionURL = `mongodb+srv://${DB_LOGIN}:${DB_PASS}@cluster0.f3yi0.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
 function dbConnect() {
   mongoose.connect(dbConnectionURL, options, (err) => {

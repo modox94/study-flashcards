@@ -40,6 +40,8 @@ async function seed() {
 
   newUser.games.push(newGame._id);
   await newUser.save();
+
+  console.log('Success seeded');
 }
 
 seed();
