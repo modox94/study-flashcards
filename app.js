@@ -8,10 +8,6 @@ const playRouter = require('./src/routes/play');
 const newRouter = require('./src/routes/new');
 const gameRouter = require('./src/routes/game');
 const tryRouter = require('./src/routes/try');
-const Deck = require('./src/models/Deck.model');
-const Game = require('./src/models/Game.model');
-const User = require('./src/models/User.model');
-const Card = require('./src/models/Card.model');
 
 const app = express();
 

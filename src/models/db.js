@@ -3,12 +3,8 @@ const mongoose = require('mongoose');
 
 const options = {
   useNewUrlParser: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
   useUnifiedTopology: true,
   autoIndex: true,
-  poolSize: 10,
-  bufferMaxEntries: 0,
 };
 
 const { DB_NAME, DB_LOGIN, DB_PASS } = process.env;
